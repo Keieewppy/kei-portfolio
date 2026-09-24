@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+/* Vengeance UI components switch colours with a `.dark` class on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-ink: #08111d;
+  --color-ink-2: #0d1a2a;
+  --color-panel: #111f31;
+  --color-line: #1e3148;
+  --color-text: #e6edf5;
+  --color-muted: #93a6bc;
+  --color-teal: #2ec4b6;
+  --color-sand: #e9b872;
+  --color-blue: #4d7cff;
+
+  /* used by Skiper UI (bg-background, text-foreground) */
+  --color-background: #08111d;
+  --color-foreground: #e6edf5;
+
+  --font-display: var(--font-bricolage), "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--font-plex), "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, Consolas, monospace;
+}
+
+html {
+  color-scheme: dark;
+  background: var(--color-ink);
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(46 196 182 / 0.35);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 3px;
+}
+
+/* Ambient dotted background */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60vw 40vw at 85% -5%, rgb(46 196 182 / 0.12), transparent 60%),
+    radial-gradient(50vw 40vw at -10% 60%, rgb(77 124 255 / 0.09), transparent 60%),
+    var(--color-ink);
+}
+.page-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgb(230 237 245 / 0.07) 1px, transparent 1.2px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+}
+
+/* ---------- Vengeance UI: Animated Rays ---------- */
+:root {
+  --stripe-color: #fff;
+}
+.dark {
+  --stripe-color: #000;
+}
+@keyframes aurora-smooth-bg {
+  from { background-position: 50% 50%, 50% 50%; }
+  to { background-position: 350% 50%, 350% 50%; }
+}
+.animate-aurora-bg {
+  animation: aurora-smooth-bg 60s linear infinite;
+}
+
+/* ---------- Vengeance UI: Spotlight Navbar ---------- */
+.spotlight-nav {
+  --spotlight-color: rgba(0, 0, 0, 0.08);
+  --ambience-color: rgba(0, 0, 0, 0.8);
+}
+.dark .spotlight-nav {
+  --spotlight-color: rgba(46, 196, 182, 0.28);
+  --ambience-color: rgba(46, 196, 182, 1);
+}
+.spotlight-nav-bg {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+.dark .spotlight-nav-bg {
+  background: rgba(8, 17, 29, 0.72);
+  backdrop-filter: blur(14px);
+}
+.spotlight-nav-shadow {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+.dark .spotlight-nav-shadow {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+}
+.glass-border {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.dark .glass-border {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* ---------- Vengeance UI: Glow Border Card ---------- */
+@property --glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes glow-angle-rotate {
+  to { --glow-angle: 1turn; }
+}
+.glow-conic {
+  border-image: conic-gradient(
+      from var(--glow-angle),
+      var(--glow-color-1, #669900),
+      var(--glow-color-2, #99cc33),
+      var(--glow-color-3, #ccee66),
+      var(--glow-color-4, #006699),
+      var(--glow-color-5, #3399cc),
+      var(--glow-color-6, #990066),
+      var(--glow-color-7, #cc3399),
+      var(--glow-color-8, #ff6600),
+      var(--glow-color-9, #ff9900),
+      var(--glow-color-10, #ffcc00),
+      var(--glow-color-1, #669900)
+    ) 1;
+  animation: glow-angle-rotate var(--glow-animation-duration, 4s) linear infinite;
+}
+
+/* ---------- Terminal typing ---------- */
+.term-line {
+  display: block;
+  animation: type-in 0.5s steps(20) both;
+}
+@keyframes type-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+.term-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--color-teal);
+  vertical-align: -3px;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.pulse-dot {
+  animation: pulse 2.2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgb(46 196 182 / 0.6); }
+  70% { box-shadow: 0 0 0 10px rgb(46 196 182 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(46 196 182 / 0); }
+}
+
+/* ---------- Tech marquee ---------- */
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Phone mockups (project cards) ---------- */
+.phone {
+  width: 230px;
+  max-width: 100%;
+  aspect-ratio: 9 / 18.5;
+  border-radius: 34px;
+  padding: 10px;
+  background: #050a12;
+  border: 1px solid #22344b;
+  box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.8), inset 0 0 0 2px #0f1c2c;
+}
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+}
+.phone-notch {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  translate: -50%;
+  width: 70px;
+  height: 16px;
+  border-radius: 10px;
+  background: #050a12;
+  z-index: 2;
+}
+.phone-slides {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  animation: phone-slides 9s infinite;
+}
+.phone-slide {
+  width: 33.334%;
+  height: 100%;
+  padding: 26px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+@keyframes phone-slides {
+  0%, 28% { transform: translateX(0); }
+  33%, 61% { transform: translateX(-33.334%); }
+  66%, 94% { transform: translateX(-66.667%); }
+  100% { transform: translateX(0); }
+}
+
+/* Vezora mini UI */
+.vz { background: #f4fafa; color: #0f2e33; }
+.vz .t { font: 700 13px var(--font-display); }
+.vz .sm { font-size: 9px; color: #5b7b80; }
+.vz .search { background: #fff; border: 1px solid #dcebec; border-radius: 10px; padding: 7px 9px; font-size: 9px; color: #8aa3a6; }
+.vz .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.vz .tile { background: #fff; border-radius: 10px; padding: 8px 4px; text-align: center; font-size: 7.5px; border: 1px solid #e3f0f0; }
+.vz .tile i { display: block; width: 18px; height: 18px; margin: 0 auto 4px; border-radius: 6px; background: #2e8b9c; opacity: 0.85; }
+.vz .tile:nth-child(3n + 2) i { background: #56b6a6; }
+.vz .tile:nth-child(3n) i { background: #9bd3cb; }
+.vz .card { background: #fff; border-radius: 12px; padding: 9px; border: 1px solid #e3f0f0; display: flex; gap: 8px; align-items: center; }
+.vz .av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #2e8b9c, #9bd3cb); flex: none; }
+.vz .btnx { margin-top: auto; background: #2e8b9c; color: #fff; text-align: center; border-radius: 10px; padding: 8px; font-weight: 600; font-size: 9px; }
+.vz.call { background: #0e2a30; color: #fff; }
+.vz .peer { flex: 1; border-radius: 14px; background: radial-gradient(circle at 50% 40%, #2e8b9c 0 22%, #173f47 23% 100%); position: relative; }
+.vz .pip { position: absolute; right: 8px; top: 8px; width: 42px; height: 58px; border-radius: 8px; background: #3b6d75; border: 2px solid #fff; }
+.vz .ctrl { display: flex; justify-content: center; gap: 8px; }
+.vz .ctrl b { width: 24px; height: 24px; border-radius: 50%; background: #1f4a52; }
+.vz .ctrl b:last-child { background: #e5484d; }
+
+/* HealthHUB mini UI */
+.hh { background: #f6f7fb; color: #1b2240; }
+.hh .t { font: 700 13px var(--font-display); }
+.hh .sm { font-size: 9px; color: #69708c; }
+.hh .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.hh .st { background: #fff; border-radius: 10px; padding: 8px; border: 1px solid #e6e8f2; }
+.hh .st b { display: block; font: 700 16px var(--font-display); color: #3949ab; }
+.hh .st span { font-size: 7.5px; color: #69708c; }
+.hh .beds { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+.hh .bed { aspect-ratio: 1; border-radius: 6px; background: #c8f0d8; }
+.hh .bed.o { background: #f8c9c9; }
+.hh .bed.r { background: #fde7b0; }
+.hh .row { background: #fff; border-radius: 10px; padding: 8px; border: 1px solid #e6e8f2; display: flex; justify-content: space-between; font-size: 8.5px; align-items: center; gap: 6px; }
+.hh .pill { font-size: 7px; padding: 3px 6px; border-radius: 99px; background: #fde7b0; color: #7a5b00; }
+.hh .pill.g { background: #c8f0d8; color: #11663a; }
+.hh .bar { flex: 1; height: 6px; border-radius: 4px; background: #e6e8f2; overflow: hidden; }
+.hh .bar i { display: block; height: 100%; background: #3949ab; }
+
+/* GoKEI mini UI */
+.gk { background: #0f1420; color: #eef2ff; }
+.gk .t { font: 700 13px var(--font-display); }
+.gk .sm { font-size: 9px; color: #8b93ad; }
+.gk .amt { font: 800 26px var(--font-display); letter-spacing: -1px; }
+.gk .box { background: #182033; border: 1px solid #253049; border-radius: 12px; padding: 9px; font-size: 9px; display: flex; justify-content: space-between; align-items: center; }
+.gk .btnx { margin-top: auto; background: #2ec4b6; color: #08111d; text-align: center; border-radius: 10px; padding: 8px; font-weight: 700; font-size: 9px; }
+.gk .ok { color: #7ee0a1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Lenis smooth scroll (recommended base styles) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
