@@ -293,3 +293,32 @@ html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+/* ---------- Performance on phones ---------- */
+@media (max-width: 767px) {
+  /* no live backdrop blur while scrolling */
+  .spotlight-nav-bg,
+  .dark .spotlight-nav-bg {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(8, 17, 29, 0.94);
+  }
+  /* static glow instead of an endlessly rotating blurred border */
+  .glow-conic {
+    animation: none;
+  }
+  /* drop the masked dot layer on the fixed background */
+  .page-bg::after {
+    display: none;
+  }
+  .page-bg {
+    background: var(--color-ink);
+  }
+}
+
+/* Stop every animation while the tab/app is in the background (recent apps, other tabs) */
+html.page-hidden *,
+html.page-hidden *::before,
+html.page-hidden *::after {
+  animation-play-state: paused !important;
+}

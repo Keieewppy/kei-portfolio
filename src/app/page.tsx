@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { ReactLenis } from "lenis/react";
 
 import { SiteNav } from "@/components/site-nav";
@@ -12,9 +13,16 @@ import { SpringMouseFollow } from "@/components/ui/skiper/skiper61";
 import { ScrollProgress } from "@/components/ui/skiper/skiper89";
 
 export default function Home() {
+  // Pause CSS animations when the page isn't visible (switching apps, other tabs)
+  useEffect(() => {
+    const onVis = () => document.documentElement.classList.toggle("page-hidden", document.hidden);
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, []);
+
   return (
     // Lenis smooth scrolling (the same setup Skiper UI's scroll components use)
-    <ReactLenis root>
+    <ReactLenis root options={{ syncTouch: false }}>
       <div className="page-bg" aria-hidden />
       <SiteNav />
       <main>

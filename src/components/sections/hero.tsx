@@ -28,9 +28,15 @@ export function Hero() {
   return (
     <header id="top" className="relative overflow-hidden">
       {/* Vengeance UI: Animated Rays, the aurora light in the top-right corner */}
-      <div className="pointer-events-none absolute inset-0 opacity-70">
+      {/* Desktop only: it's a full-screen animated blur, too heavy for phone GPUs */}
+      <div className="pointer-events-none absolute inset-0 hidden opacity-70 md:block">
         <AnimatedRays />
       </div>
+      {/* Phones get a static glow instead */}
+      <div
+        className="pointer-events-none absolute inset-0 md:hidden"
+        style={{ background: "radial-gradient(120% 60% at 100% 0%, rgba(46,196,182,.22), transparent 60%)" }}
+      />
 
       <div className="relative mx-auto grid max-w-[1120px] items-center gap-12 px-4 pb-16 pt-32 sm:px-8 md:pt-40 lg:grid-cols-[1.15fr_.85fr]">
         <div>

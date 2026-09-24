@@ -39,7 +39,7 @@ export function Projects() {
               progress={scrollYProgress}
               range={[i * 0.25, 1]}
               targetScale={targetScale}
-              className="border border-line bg-gradient-to-br from-panel to-ink-2 shadow-[0_40px_80px_-40px_rgba(0,0,0,.8)]"
+              className="border border-line bg-gradient-to-br from-panel to-ink-2 md:shadow-[0_40px_80px_-40px_rgba(0,0,0,.8)]"
             >
               <article className="grid items-center gap-8 p-6 sm:p-10 md:grid-cols-[1fr_260px] md:gap-12">
                 <div>
