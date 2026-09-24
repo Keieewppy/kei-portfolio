@@ -67,7 +67,7 @@ const ScrollAssembleText = ({
   return (
     <div
       ref={targetRef}
-      className="relative flex h-[170vh] items-center justify-center overflow-hidden px-4"
+      className="relative flex h-[115vh] items-center justify-center overflow-hidden px-4 md:h-[170vh]"
     >
       <div className={cn("w-full text-center", className)} style={{ perspective: "500px" }}>
         {characters.map((char, index) => (

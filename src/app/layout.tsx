@@ -21,13 +21,24 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://chaitanya-yadav.vercel.app"),
   title: "Chaitanya Yadav (Kei) · Software Developer",
+  keywords: ["Chaitanya Yadav", "Kei", "Flutter developer", "React Native developer", "Node.js", "portfolio", "Delhi"],
+  authors: [{ name: "Chaitanya Yadav" }],
+  alternates: { canonical: "/" },
   description:
     "Software developer building Flutter and React Native apps and Node.js backends. Co-founder of BeClazo.",
   openGraph: {
     title: "Chaitanya Yadav (Kei) · Software Developer",
     description: "I build apps people can actually use.",
     type: "website",
+    url: "https://chaitanya-yadav.vercel.app",
+    siteName: "Chaitanya Yadav",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chaitanya Yadav (Kei) · Software Developer",
+    description: "I build apps people can actually use.",
   },
 };
 

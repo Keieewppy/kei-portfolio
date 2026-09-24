@@ -5,7 +5,7 @@
  * Source: https://skiper-ui.com/v1/skiper89
  *
  * Adapted for this portfolio: only the draggable progress widget is kept
- * (demo text removed), coloured teal, and imported from framer-motion.
+ * (demo text removed), coloured teal, imported from framer-motion, and hidden on phones.
  *
  * License & Usage (Skiper UI free):
  * - Free to use and modify in both personal and commercial projects.
@@ -41,7 +41,7 @@ const ScrollProgress = () => {
     <motion.div
       drag
       dragMomentum={false}
-      className="group fixed bottom-4 right-4 z-50 cursor-grab items-center gap-1 text-teal active:cursor-grabbing"
+      className="group fixed bottom-4 right-4 z-50 hidden cursor-grab items-center md:block gap-1 text-teal active:cursor-grabbing"
     >
       <NumberFlow
         value={progressPercent}

@@ -16,7 +16,7 @@ export function Stack() {
         charClassName="text-teal"
       />
 
-      <div className="-mt-[40vh] mx-auto max-w-[1120px] px-4 sm:px-8">
+      <div className="mx-auto -mt-[25vh] max-w-[1120px] px-4 sm:px-8 md:-mt-[40vh]">
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.15em] text-teal">Toolkit</p>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <h2 className="font-display text-[clamp(32px,4.4vw,52px)] font-bold leading-[1.05] tracking-[-0.03em]">

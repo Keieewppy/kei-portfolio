@@ -2,7 +2,8 @@
 
 // Vengeance UI — spotlight-navbar
 // Source: https://www.vengenceui.com (MIT License, github.com/Ashutoshx7/VengeanceUI)
-// Modified for this portfolio: colour styles moved to globals.css (teal lights), styled-jsx block removed.
+// Modified for this portfolio: colour styles moved to globals.css (teal lights), styled-jsx block removed,
+// and an optional `currentIndex` prop added so the active link can follow scroll position.
 
 import React, { useEffect, useRef, useState } from "react";
 import { animate } from "framer-motion";
@@ -18,6 +19,8 @@ export interface SpotlightNavbarProps {
     className?: string;
     onItemClick?: (item: NavItem, index: number) => void;
     defaultActiveIndex?: number;
+    /** Controlled active index (e.g. from scroll position). */
+    currentIndex?: number;
 }
 
 export function SpotlightNavbar({
@@ -31,9 +34,14 @@ export function SpotlightNavbar({
     className,
     onItemClick,
     defaultActiveIndex = 0,
+    currentIndex,
 }: SpotlightNavbarProps) {
     const navRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
+
+    useEffect(() => {
+        if (currentIndex !== undefined && currentIndex >= 0) setActiveIndex(currentIndex);
+    }, [currentIndex]);
     const [hoverX, setHoverX] = useState<number | null>(null);
     const [isDark, setIsDark] = useState(false);
 
