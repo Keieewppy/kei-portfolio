@@ -5,3 +5,7 @@ out/
 *.tsbuildinfo
 .vercel
 .DS_Store
+
+# local helper script
+push-to-github.bat
+update-and-deploy.bat
