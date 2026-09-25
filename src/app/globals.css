@@ -299,8 +299,7 @@ html.lenis body {
   /* no live backdrop blur while scrolling */
   .spotlight-nav-bg,
   .dark .spotlight-nav-bg {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    backdrop-filter: none !important;
     background: rgba(8, 17, 29, 0.94);
   }
   /* static glow instead of an endlessly rotating blurred border */

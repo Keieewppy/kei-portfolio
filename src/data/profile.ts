@@ -72,12 +72,11 @@ export const projects: Project[] = [
   {
     id: "beclazo",
     name: "BeClazo",
-    kind: "Cloud kitchen + football jersey brand",
+    kind: "Football jersey brand",
     status: "Co-founder",
     description:
       "The startup I run with two friends. I own the tech and operations side: brand identity and web pages, an inventory and order system built from raw WhatsApp exports, and custom SVG jersey name sets for customer orders.",
     stats: [
-      { value: 2, label: "business arms" },
       { value: 3, label: "co-founders" },
     ],
     stack: ["HTML/CSS", "Brand design", "SVG", "Inventory systems"],
@@ -101,7 +100,7 @@ export const journey = [
     when: "Jun 2026 — now",
     title: "Co-Founder & Developer",
     org: "BeClazo",
-    text: "Running the tech and operations side of a cloud kitchen and football jersey brand, and taking on freelance web and app work alongside it.",
+    text: "Running the tech and operations side of a football jersey brand, and taking on freelance web and app work alongside it.",
   },
   {
     when: "Aug 2026",
